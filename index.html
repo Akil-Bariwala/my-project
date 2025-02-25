@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Checker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+</head>
+<body>
+    <div id="breach-news" class="sidebar left">
+        <h3>Latest Data Breaches</h3>
+        <ul id="breach-list">Loading...</ul>
+    </div>
+    <div class="container">
+        <h1>Password Strength Checker</h1>
+        <input type="password" id="password" placeholder="Enter your password">
+        <input type="password" id="confirm-password" placeholder="Confirm your password">
+        <label>
+          <input type="checkbox" id="toggle-password"> Show Password
+        </label>
+        <progress id="strength-bar" max="4" value="0"></progress>
+        <div id="match-feedback"></div>
+        <div id="feedback"></div>
+        <div id="suggestions"></div>
+        <div id="entropy-display"></div>
+        <div id="hashed-password"></div>
+    </div>
+    <div id="common-passwords" class="sidebar right">
+        <h3>Common Passwords</h3>
+        <ul>
+            <li>123456</li>
+            <li>password</li>
+            <li>123456789</li>
+            <li>12345678</li>
+            <li>12345</li>
+            <li>1234567</li>
+            <li>qwerty</li>
+            <li>abc123</li>
+            <li>password1</li>
+            <li>111111</li>
+        </ul>
+    </div>
+  <script src="script.js"></script>
+</body>
+</html>
