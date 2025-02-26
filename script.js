@@ -9,15 +9,15 @@ const breachList = document.getElementById('breach-list');
 const entropyDisplay = document.getElementById('entropy-display');
 const matchFeedback = document.getElementById('match-feedback');
 
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+const proxyUrl = "https://api.allorigins.win/raw?url=";
 const apiUrl = "https://newsapi.org/v2/everything?q=data%20breach&apiKey=5725a7aaccaf45c782f3c625d3186f93";
 
 async function fetchBreachNews() {
     try {
-        const response = await fetch(proxyUrl + apiUrl);
+        const response = await fetch(proxyUrl + encodeURIComponent(apiUrl));
         const data = await response.json();
 
-        console.log("API Response:", data); // Debugging step
+        console.log("API Response:", data);
 
         if (!data.articles || data.articles.length === 0) {
             breachList.innerHTML = '<li>No recent breach news available.</li>';
