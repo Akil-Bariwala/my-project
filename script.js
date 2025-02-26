@@ -32,10 +32,13 @@ async function fetchBreachNews() {
 }
 
 function displayBreachNews(articles) {
-  breachList.innerHTML = articles.slice(0, 5).map(article =>
-      `<li><a href="${article.url}" target="_blank">${article.title}</a> - ${article.source.name}</li>`
-  ).join('');
+  breachList.innerHTML = articles.slice(0, 4).map(article => {
+      const truncatedTitle = article.title.length > 15 ? article.title.substring(0, 15) + "..." : article.title;
+      const author = article.author ? ` - ${article.author}` : '';
+      return `<li><a href="${article.url}" target="_blank">${truncatedTitle}</a>${author}</li>`;
+  }).join('');
 }
+
 
 fetchBreachNews();
 
