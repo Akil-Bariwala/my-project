@@ -9,22 +9,26 @@ const breachList = document.getElementById('breach-list');
 const entropyDisplay = document.getElementById('entropy-display');
 const matchFeedback = document.getElementById('match-feedback');
 
-// Fetch latest data breaches using NewsAPI
+const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+const apiUrl = "https://newsapi.org/v2/everything?q=data%20breach&apiKey=5725a7aaccaf45c782f3c625d3186f93";
+
 async function fetchBreachNews() {
-  try {
-      const response = await fetch('https://newsapi.org/v2/everything?q=data%20breach&apiKey=5725a7aaccaf45c782f3c625d3186f93');
-      const data = await response.json();
+    try {
+        const response = await fetch(proxyUrl + apiUrl);
+        const data = await response.json();
 
-      if (!data.articles || data.articles.length === 0) {
-          breachList.innerHTML = '<li>No recent breach news available.</li>';
-          return;
-      }
+        console.log("API Response:", data); // Debugging step
 
-      displayBreachNews(data.articles);
-  } catch (error) {
-      breachList.innerHTML = '<li>Failed to load breach data.</li>';
-      console.error('Error fetching breach news:', error);
-  }
+        if (!data.articles || data.articles.length === 0) {
+            breachList.innerHTML = '<li>No recent breach news available.</li>';
+            return;
+        }
+
+        displayBreachNews(data.articles);
+    } catch (error) {
+        breachList.innerHTML = `<li>Failed to load breach data: ${error.message}</li>`;
+        console.error("Error fetching breach news:", error);
+    }
 }
 
 function displayBreachNews(articles) {
